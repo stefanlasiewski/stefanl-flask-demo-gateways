@@ -1,0 +1,16 @@
+{% extends "page.html" %}
+{% block body %}
+<h1 class="display-1">{{ title }}</h1>
+<p class="lead">{{ entry.name }}</p>
+<dl class="row">
+    <dt class="col-sm-3">Image</dt>
+    <dd class="col-sm-9"><img src="{{ url_for('static', filename=entry.name + '.png') }}"></dd>
+
+    <dt class="col-sm-3">Human 1</dt>
+    <dd class="col-sm-9">{{ entry.human1 }}</dd>
+
+    <dt class="col-sm-3">Human 2</dt>
+    <dd class="col-sm-9">{{ entry.human2 }}</dd>
+</dl>
+<p class="text-center"><a href="{{ url_for('fields', field_id=prev_id) }}">&#9194;</a> &emsp; <a href="{{ url_for('fields', field_id=next_id) }}">&#9193;</a></p>
+{% endblock %}

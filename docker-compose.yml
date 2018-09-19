@@ -1,9 +1,8 @@
 version: '2'
 services:
   web:
-    image: nginx:stable
+    image: registry.spin.nersc.gov/stefanl/stefanl-nginx-proxy:v1
     volumes:
-    - /global/project/projectdirs/isguser/spin/stefanl-flask-demo/web/nginx-proxy.conf:/etc/nginx/conf.d/default.conf:ro
     - /global/project/projectdirs/isguser/spin/stefanl-flask-demo/web/images:/srv:ro
     ports:
     - 8080:8080/tcp
@@ -15,7 +14,7 @@ services:
     labels:
       io.rancher.container.pull_image: always
   app:
-    image: registry.spin.nersc.gov/das/spin-flask-demo-app:latest
+    image: registry.spin.nersc.gov/stefanl/stefanl-flask-fruitfly:v1
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongouser
       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo-initdb-password
@@ -30,7 +29,7 @@ services:
     labels:
       io.rancher.container.pull_image: always
   db:
-    image: mongo:latest
+    image: mongo:4
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongouser
       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo-initdb-password
@@ -42,6 +41,7 @@ services:
     - CHOWN
     - SETGID
     - SETUID
+    - DAC_OVERRIDE
     secrets:
     - mode: '0444'
       uid: '0'

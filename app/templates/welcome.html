@@ -1,0 +1,7 @@
+{% extends "page.html" %}
+{% block body %}
+<h1 class="display-1">Welcome</h1>
+<p class="lead">Welcome to the Spin Flask Demo App. 
+There are {{ count }} pictures of fruit fly cells to look at.
+Have a <a href="{{ url_for('fields') }}">look around.</a></p>
+{% endblock %}

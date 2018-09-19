@@ -1,0 +1,30 @@
+{% extends "page.html" %}
+{% block body %}
+<h1 class="display-1">{{ title }}</h1>
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Human 1</th>
+                    <th>Human 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in data %}
+                <tr>
+                    <th scope="row">{{ entry.field_id }}</th>
+                    <td><a href="{{ url_for('fields', field_id=entry.field_id) }}">{{ entry.name }}</a></td>
+                    <td><img src="{{ url_for('static', filename=entry.name + '.png') }}" width=50></td>
+                    <td>{{ entry.human1 }}</td>
+                    <td>{{ entry.human2 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
