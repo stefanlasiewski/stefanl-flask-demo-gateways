@@ -10,7 +10,9 @@ RUN \
     apt-get --yes install       \
         bzip2                   \
         curl                    \
-        vim
+        vim                     \
+        procps                  \
+        openssh-client
 
 RUN \
     curl -o /tmp/miniconda3.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh    &&  \

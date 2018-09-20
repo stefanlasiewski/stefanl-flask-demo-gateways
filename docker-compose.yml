@@ -13,6 +13,7 @@ services:
     - nginx
     labels:
       io.rancher.container.pull_image: always
+    retain_ip: true
   app:
     image: registry.spin.nersc.gov/stefanl/stefanl-flask-fruitfly:v1
     environment:
