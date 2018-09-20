@@ -21,16 +21,16 @@ services:
     stdin_open: true
     tty: true
     secrets:
-    - mode: '0444'
+    - source: db.stefanl-flask-demo-gateways.mongo-initdb-password
+      target: mongo-initdb-password
+      mode: '0444'
       uid: '0'
       gid: '0'
-      source: db.stefanl-flask-demo-gateways.mongo-initdb-password
-      target: mongo-initdb-password
-    - mode: '0400'
+    - source: app.stefanl-flask-demo-gateways.ssh_private_key
+      target: ssh_private_key
+      mode: '0400'
       uid: '46311'
       gid: '71216'
-      source: app.stefanl-flask-demo-gateways.ssh_private_key
-      target: ssh_private_key
 
     labels:
       io.rancher.container.pull_image: always
@@ -49,11 +49,11 @@ services:
     - SETUID
     - DAC_OVERRIDE
     secrets:
-    - mode: '0444'
+    - source: db.stefanl-flask-demo-gateways.mongo-initdb-password
+      target: mongo-initdb-password
+      mode: '0444'
       uid: '0'
       gid: '0'
-      source: db.stefanl-flask-demo-gateways.mongo-initdb-password
-      target: mongo-initdb-password
     labels:
       io.rancher.container.pull_image: always
 
