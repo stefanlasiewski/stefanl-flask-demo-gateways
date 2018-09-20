@@ -14,6 +14,7 @@ services:
     labels:
       io.rancher.container.pull_image: always
     retain_ip: true
+
   app:
     image: registry.spin.nersc.gov/stefanl/stefanl-flask-fruitfly:v1
     environment:
@@ -32,7 +33,6 @@ services:
       mode: '0400'
       uid: '46311'
       gid: '71216'
-
     labels:
       io.rancher.container.pull_image: always
   db:
