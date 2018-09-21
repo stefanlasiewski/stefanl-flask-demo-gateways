@@ -3,7 +3,7 @@ services:
   web:
     image: registry.spin.nersc.gov/stefanl/stefanl-nginx-proxy:v1
     volumes:
-    - /global/project/projectdirs/isguser/spin/stefanl-flask-demo-gateways/web/images:/srv:ro
+    - /global/project/projectdirs/isguser/spin/gateways-demo/web/images:/srv:ro
     ports:
     - 8080:8080/tcp
     cap_drop:
@@ -23,12 +23,12 @@ services:
     stdin_open: true
     tty: true
     secrets:
-    - source: db.stefanl-flask-demo-gateways.mongo-initdb-password
+    - source: db.gateways-demo.mongo-initdb-password
       target: mongo-initdb-password
       mode: '0444'
       uid: '0'
       gid: '0'
-    - source: app.stefanl-flask-demo-gateways.ssh_private_key
+    - source: app.gateways-demo.ssh_private_key
       target: ssh_private_key
       mode: '0400'
       uid: '46311'
@@ -41,7 +41,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: mongouser
       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo-initdb-password
     volumes:
-    - db.stefanl-flask-demo-gateways:/data/db
+    - db.gateways-demo:/data/db
     cap_drop:
     - ALL
     cap_add:
@@ -50,7 +50,7 @@ services:
     - SETUID
     - DAC_OVERRIDE
     secrets:
-    - source: db.stefanl-flask-demo-gateways.mongo-initdb-password
+    - source: db.gateways-demo.mongo-initdb-password
       target: mongo-initdb-password
       mode: '0444'
       uid: '0'
@@ -59,14 +59,14 @@ services:
       io.rancher.container.pull_image: always
 
 secrets:
-  db.stefanl-flask-demo-gateways.mongo-initdb-password:
+  db.gateways-demo.mongo-initdb-password:
     external: 'true'
 
 secrets:
-  app.stefanl-flask-demo-gateways.ssh_private_key:
+  app.gateways-demo.ssh_private_key:
     external: 'true'
 
 volumes:
-  db.stefanl-flask-demo-gateways:
+  db.gateways-demo:
     external: true
     driver: rancher-nfs
