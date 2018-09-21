@@ -16,7 +16,7 @@ services:
     retain_ip: true
 
   app:
-    image: registry.spin.nersc.gov/stefanl/stefanl-flask-fruitfly:v1
+    image: registry.spin.nersc.gov/stefanl/stefanl-flask-fruitfly:v2
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongouser
       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo-initdb-password
