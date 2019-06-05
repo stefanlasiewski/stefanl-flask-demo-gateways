@@ -20,8 +20,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongouser
       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo-initdb-password
-    stdin_open: true
-    tty: true
     secrets:
     - source: db.fruitfly-demo.mongo-initdb-password
       target: mongo-initdb-password
@@ -68,5 +66,5 @@ secrets:
 
 volumes:
   db.fruitfly-demo:
-    external: true
     driver: rancher-nfs
+    external: true
