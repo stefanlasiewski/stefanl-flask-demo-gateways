@@ -5,7 +5,7 @@ services:
     volumes:
     - /global/project/projectdirs/isguser/spin/fruitfly/web/images:/srv:ro
     ports:
-    - 8080:8080/tcp
+    - 55100:8080
     cap_drop:
     - ALL
     user: 46311:71216
@@ -33,6 +33,7 @@ services:
 #      gid: '71216'
     labels:
       io.rancher.container.pull_image: always
+    retain_ip: true
   db:
     image: mongo:4
     environment:
