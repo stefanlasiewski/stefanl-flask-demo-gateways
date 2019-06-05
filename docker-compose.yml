@@ -58,7 +58,7 @@ services:
 
 secrets:
   db.fruitfly-demo.mongo-initdb-password:
-    external: 'true'
+    file: mongo-initdb-password
 
 #secrets:
 #  app.fruitfly-demo.ssh_private_key:
