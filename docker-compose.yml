@@ -26,11 +26,11 @@ services:
       mode: '0444'
       uid: '0'
       gid: '0'
-    - source: app.fruitfly-demo.ssh_private_key
-      target: ssh_private_key
-      mode: '0400'
-      uid: '46311'
-      gid: '71216'
+#    - source: app.fruitfly-demo.ssh_private_key
+#      target: ssh_private_key
+#      mode: '0400'
+#      uid: '46311'
+#      gid: '71216'
     labels:
       io.rancher.container.pull_image: always
   db:
@@ -60,9 +60,9 @@ secrets:
   db.fruitfly-demo.mongo-initdb-password:
     external: 'true'
 
-secrets:
-  app.fruitfly-demo.ssh_private_key:
-    external: 'true'
+#secrets:
+#  app.fruitfly-demo.ssh_private_key:
+#    external: 'true'
 
 volumes:
   db.fruitfly-demo:
