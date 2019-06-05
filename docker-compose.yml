@@ -3,7 +3,7 @@ services:
   web:
     image: registry.spin.nersc.gov/stefanl/stefanl-nginx-proxy:v1
     volumes:
-    - /global/project/projectdirs/isguser/spin/gateways-demo/web/images:/srv:ro
+    - /global/project/projectdirs/isguser/spin/fruitfly/web/images:/srv:ro
     ports:
     - 8080:8080/tcp
     cap_drop:
@@ -23,12 +23,12 @@ services:
     stdin_open: true
     tty: true
     secrets:
-    - source: db.gateways-demo.mongo-initdb-password
+    - source: db.fruitfly-demo.mongo-initdb-password
       target: mongo-initdb-password
       mode: '0444'
       uid: '0'
       gid: '0'
-    - source: app.gateways-demo.ssh_private_key
+    - source: app.fruitfly-demo.ssh_private_key
       target: ssh_private_key
       mode: '0400'
       uid: '46311'
@@ -41,7 +41,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: mongouser
       MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo-initdb-password
     volumes:
-    - db.gateways-demo:/data/db
+    - db.fruitfly-demo:/data/db
     cap_drop:
     - ALL
     cap_add:
@@ -50,7 +50,7 @@ services:
     - SETUID
     - DAC_OVERRIDE
     secrets:
-    - source: db.gateways-demo.mongo-initdb-password
+    - source: db.fruitfly-demo.mongo-initdb-password
       target: mongo-initdb-password
       mode: '0444'
       uid: '0'
@@ -59,14 +59,14 @@ services:
       io.rancher.container.pull_image: always
 
 secrets:
-  db.gateways-demo.mongo-initdb-password:
+  db.fruitfly-demo.mongo-initdb-password:
     external: 'true'
 
 secrets:
-  app.gateways-demo.ssh_private_key:
+  app.fruitfly-demo.ssh_private_key:
     external: 'true'
 
 volumes:
-  db.gateways-demo:
+  db.fruitfly-demo:
     external: true
     driver: rancher-nfs
